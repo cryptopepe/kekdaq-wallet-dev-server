@@ -11,7 +11,7 @@
     "start": "./node_modules/coffee-script/bin/coffee server.coffee"
   },
   "bin": {
-    "dogeparty-wallet-dev-server": "./node_modules/coffee-script/bin/coffee server.coffee"
+    "dogeparty-wallet-dev-server": "./bin/dogeparty-wallet-dev-server.js"
   },
   "dependencies": {
     "coffee-script": "^1.8.0",
