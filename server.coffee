@@ -14,16 +14,21 @@ if fs.existsSync(walletPath)
 
   fileServer = new stat.Server(walletPath)
   proxy = httpProxy.createProxyServer()
+  proxy.on 'error', (error, req, res) ->
+    console.log 'proxy error', error
+    if !res.headersSent
+      res.writeHead 500, 'content-type': 'application/json'
+
+    json = error: 'proxy_error', reason: error.message
+    res.end JSON.stringify(json)
 
   require('http').createServer((req, res) ->
     console.log "'#{req.url}'"
     if req.url == '/servers.json'
-      res.write JSON.stringify(servers: [])
-      #servers: [dogeblockdUrl])
-      res.end()
+      res.end JSON.stringify(servers: [])
     else if req.url.match(/^\/_api/)
-      # req.url = req.url.replace(/^\/_api/, '/api')
-      req.url = req.url.replace(/^\/_api/, '')
+      req.url = req.url.replace(/^\/_api/, '/api')
+      req.url += '/' if req.url == '/api'
       console.log "proxying to '#{dogeblockdUrl}#{req.url}'"
       proxy.web req, res, target: dogeblockdUrl
     else
