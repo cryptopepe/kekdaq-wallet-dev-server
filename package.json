@@ -1,5 +1,15 @@
 {
-  "private": true,
+  "name": "dogeparty-wallet-dev-server",
+  "author": "Lars Kluge <l@larskluge.com>",
+  "description": "A simple web server that's designed to help with Dogeparty Wallet development.",
+  "keywords": [
+    "dogeparty",
+    "xdp"
+  ],
+  "version": "0.0.1",
+  "scripts": {
+    "start": "./node_modules/coffee-script/bin/coffee server.coffee"
+  },
   "dependencies": {
     "coffee-script": "^1.8.0",
     "http-proxy": "^1.8.1",
