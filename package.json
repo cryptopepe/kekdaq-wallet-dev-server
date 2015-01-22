@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "http-proxy": "^1.8.1",
+    "node-static": "^0.7.6"
+  }
+}
